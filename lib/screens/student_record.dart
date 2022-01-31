@@ -17,6 +17,12 @@ class _StudentRecordState extends State<StudentRecord> {
   TextEditingController m2 = TextEditingController();
   TextEditingController m3 = TextEditingController();
   TextEditingController m4 = TextEditingController();
+  var n1;
+  var n2;
+  var n3;
+  var n4;
+  var total;
+  var percent;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,6 +169,46 @@ class _StudentRecordState extends State<StudentRecord> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          n1 = int.parse(m1.text);
+                          n2 = int.parse(m2.text);
+                          n3 = int.parse(m3.text);
+                          n4 = int.parse(m4.text);
+                          total = n1 + n2 + n3 + n4;
+                          percent = total / 4;
+                        });
+                      },
+                      child: Text('Calculate'),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Total: $total',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Percentage: $percent',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 SizedBox(
