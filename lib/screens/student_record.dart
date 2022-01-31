@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:guru_technolabs/models/students_list.dart';
 import 'package:guru_technolabs/storage.dart';
+import 'package:provider/provider.dart';
 
 class StudentRecord extends StatefulWidget {
   const StudentRecord({Key? key}) : super(key: key);
@@ -219,10 +220,12 @@ class _StudentRecordState extends State<StudentRecord> {
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        StudentsList obj = StudentsList(
-                            name.text, m1.text, m2.text, m3.text, m4.text);
-                        Storage().addStud(obj);
-                        Navigator.of(context).pop();
+                        StudentsList obj = StudentsList(name.text, m1.text,
+                            m2.text, m3.text, m4.text, percent.toString());
+                        // Storage().addStud(obj);
+                        Provider.of<Storage>(context, listen: false)
+                            .addStud(obj);
+                        Navigator.pop(context);
                       },
                       child: Text('Submit'),
                     ),
